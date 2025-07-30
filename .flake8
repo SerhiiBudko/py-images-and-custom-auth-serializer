@@ -1,6 +1,11 @@
+[flake8]
 max-line-length = 100
 exclude =
-    migrations,
+    .venv,
     __pycache__,
-    manage.py,
-    settings.py
+    migrations,
+    */migrations/*,
+    tests,
+    */tests/*,
+    build,
+    dist

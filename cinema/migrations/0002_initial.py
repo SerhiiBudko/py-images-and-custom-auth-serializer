@@ -10,14 +10,14 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("cinema", "0001_initial"),
+        ('cinema', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="order",
-            name="user",
+            model_name='order',
+            name='user',
             field=models.ForeignKey(
                 null=True,
                 on_delete=django.db.models.deletion.CASCADE,
@@ -25,31 +25,32 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AddField(
-            model_name="moviesession",
-            name="cinema_hall",
+            model_name='moviesession',
+            name='cinema_hall',
             field=models.ForeignKey(
-                on_delete=django.db.models.deletion.CASCADE, to="cinema.cinemahall"
+                on_delete=django.db.models.deletion.CASCADE,
+                to='cinema.cinemahall'
             ),
         ),
         migrations.AddField(
-            model_name="moviesession",
-            name="movie",
+            model_name='moviesession',
+            name='movie',
             field=models.ForeignKey(
-                on_delete=django.db.models.deletion.CASCADE, to="cinema.movie"
+                on_delete=django.db.models.deletion.CASCADE, to='cinema.movie'
             ),
         ),
         migrations.AddField(
-            model_name="movie",
-            name="actors",
-            field=models.ManyToManyField(to="cinema.actor"),
+            model_name='movie',
+            name='actors',
+            field=models.ManyToManyField(to='cinema.actor'),
         ),
         migrations.AddField(
-            model_name="movie",
-            name="genres",
-            field=models.ManyToManyField(to="cinema.genre"),
+            model_name='movie',
+            name='genres',
+            field=models.ManyToManyField(to='cinema.genre'),
         ),
         migrations.AlterUniqueTogether(
-            name="ticket",
-            unique_together={("movie_session", "row", "seat")},
+            name='ticket',
+            unique_together={('movie_session', 'row', 'seat')},
         ),
     ]

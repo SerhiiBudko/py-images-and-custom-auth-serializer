@@ -13,148 +13,148 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Actor",
+            name='Actor',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("first_name", models.CharField(max_length=255)),
-                ("last_name", models.CharField(max_length=255)),
+                ('first_name', models.CharField(max_length=255)),
+                ('last_name', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name="CinemaHall",
+            name='CinemaHall',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("name", models.CharField(max_length=255)),
-                ("rows", models.IntegerField()),
-                ("seats_in_row", models.IntegerField()),
+                ('name', models.CharField(max_length=255)),
+                ('rows', models.IntegerField()),
+                ('seats_in_row', models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name="Genre",
+            name='Genre',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("name", models.CharField(max_length=255, unique=True)),
+                ('name', models.CharField(max_length=255, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name="Movie",
+            name='Movie',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("title", models.CharField(max_length=255)),
-                ("description", models.TextField()),
-                ("duration", models.IntegerField()),
+                ('title', models.CharField(max_length=255)),
+                ('description', models.TextField()),
+                ('duration', models.IntegerField()),
                 (
-                    "image",
+                    'image',
                     models.ImageField(
                         null=True, upload_to=cinema.models.movie_image_path
                     ),
                 ),
             ],
             options={
-                "ordering": ["title"],
+                'ordering': ['title'],
             },
         ),
         migrations.CreateModel(
-            name="MovieSession",
+            name='MovieSession',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("show_time", models.DateTimeField()),
+                ('show_time', models.DateTimeField()),
             ],
             options={
-                "ordering": ["-show_time"],
+                'ordering': ['-show_time'],
             },
         ),
         migrations.CreateModel(
-            name="Order",
+            name='Order',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                "ordering": ["-created_at"],
+                'ordering': ['-created_at'],
             },
         ),
         migrations.CreateModel(
-            name="Ticket",
+            name='Ticket',
             fields=[
                 (
-                    "id",
+                    'id',
                     models.BigAutoField(
                         auto_created=True,
                         primary_key=True,
                         serialize=False,
-                        verbose_name="ID",
+                        verbose_name='ID',
                     ),
                 ),
-                ("row", models.IntegerField()),
-                ("seat", models.IntegerField()),
+                ('row', models.IntegerField()),
+                ('seat', models.IntegerField()),
                 (
-                    "movie_session",
+                    'movie_session',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="tickets",
-                        to="cinema.moviesession",
+                        related_name='tickets',
+                        to='cinema.moviesession',
                     ),
                 ),
                 (
-                    "order",
+                    'order',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        related_name="tickets",
-                        to="cinema.order",
+                        related_name='tickets',
+                        to='cinema.order',
                     ),
                 ),
             ],
             options={
-                "ordering": ["row", "seat"],
+                'ordering': ['row', 'seat'],
             },
         ),
     ]
